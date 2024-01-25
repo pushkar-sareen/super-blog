@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5 card shadow">
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add Post</h2>
+        <hr>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Post Title</label>
+    <input type="text" class="form-control" value="{{ post.post_title }}" name="post_title">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">post Description</label>
+      <textarea type="text" class="form-control"  name="post_description"> {{ post.post_description }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">post Category</label>
+      <input type="text" class="form-control" value="{{ post.post_catrgory }}" name="post_category">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+        <hr>
+</form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5 card shadow">
+    <form method="post">
+        {% csrf_token %}
+        <h2>Add Post</h2>
+        <hr>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Post Title</label>
+    <input type="text" class="form-control" name="post_title">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">post Description</label>
+      <textarea type="text" class="form-control" name="post_description"> </textarea>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">post Category</label>
+      <input type="text" class="form-control" name="post_category">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+        <hr>
+</form>
+    </div>
+
+
+
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">s.no</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in posts %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ post.post_title }}</td>
+      <td>{{ post.post_description }}</td>
+      <td>{{ post.post_catrgory }}</td>
+      <td>
+          <a href="/post-delete/{{ post.id }}" class="btn btn-danger mt-3" >Delete</a>
+          <a href="/post-update/{{ post.id }}" class="btn btn-success mt-3" >Update</a>
+      </td>
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+{% endblock %}
+
